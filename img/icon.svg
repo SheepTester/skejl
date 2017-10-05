@@ -1,0 +1,6 @@
+<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#bfbd6d" d="
+    M15 10h20v10h-10h10v20h-20v-10h10h-10z
+    M20 40h20v5h-5v-5v5h-10l-5 -5z
+  " stroke='black' stroke-width='2' stroke-linejoin='miter' stroke-linecap='sqaure'/>
+</svg>

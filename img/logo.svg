@@ -1,0 +1,16 @@
+<svg viewBox="-1 -1 87 37" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#bfbd6d" d="
+    M0 0H60V30H0z
+    M10 10h10z
+    M0 20h10z
+    M20 0v30z
+    M30 0v10z
+    M30 20v10z
+    M35 15h5z
+    M40 0v30z
+    M50 10h20z
+    M50 20h10z
+    M60 0H80V30h5v5H15L10 30H60z
+    M70 0v35z
+  " stroke='black' stroke-width='2' stroke-linejoin='miter' stroke-linecap='sqaure'/>
+</svg>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html><!-- manifest="stuff.appcache" -->
+  <head>
+    <title>Skejl</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Skejl"/>
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/schedule.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div id="progress"></div>
+    <img src="img/logo.svg" alt="SKEJL" id='logo'>
+    <button class="navbtn" id="settings"></button>
+    <ul id='upcomings'>
+      <span class="upcoming" id="current"><div id="currentprogress"></div>social studies</span>
+      <span class="upcoming next">design and tech</span>
+      <span class="upcoming next" data-time='6 years'>math</span>
+    </ul>
+    <div id="schedule">
+      <button class="normalbtn" id='yesterday'></button>
+      <button class="normalbtn" id='tomorrow'></button>
+      <div class="day">
+        <h2>monday</h2>
+        <div class="unit" style="background-color: #FFC107;" data-time="9:00-10:00">science</div>
+        <div class="unit" style="background-color: #8bc34a;" data-time="9:00-10:00">PE</div>
+        <div class="unit" style="background-color: #9c27b0;" data-time="9:00-10:00">english</div>
+        <div class="unit" style="background-color: #673ab7;" data-time="9:00-10:00">public speaking</div>
+        <div class="unit" style="background-color: #2196f3;" data-time="9:00-10:00">math</div>
+        <div class="unit" style="background-color: #ff9800;" data-time="9:00-10:00">spanish</div>
+      </div>
+      <div class="day today showing">
+        <h2>tuesday</h2>
+        <div class="unit" style="background-color: #FFC107;" data-time="9:00-10:00">science</div>
+        <div class="unit" style="background-color: #8bc34a;" data-time="9:00-10:00">PE</div>
+        <div class="unit" style="background-color: #E91E63;" data-time="9:00-10:00">social studies</div>
+        <div class="unit" style="background-color: #9c27b0;" data-time="9:00-10:00">english</div>
+        <div class="unit" style="background-color: #673ab7;" data-time="9:00-10:00">public speaking</div>
+        <div class="unit" style="background-color: #2196f3;" data-time="9:00-10:00">math</div>
+      </div>
+      <div class="day">
+        <h2>wednesday</h2>
+        <div class="unit" style="background-color: #ff9800;" data-time="9:00-10:00">spanish</div>
+        <div class="unit" style="background-color: #E91E63;" data-time="9:00-10:00">social studies</div>
+        <div class="unit" style="background-color: #9c27b0;" data-time="9:00-10:00">english</div>
+        <div class="unit" style="background-color: #673ab7;" data-time="9:00-10:00">public speaking</div>
+        <div class="unit" style="background-color: #607d8b;" data-time="9:00-10:00">WIP</div>
+      </div>
+      <div class="day">
+        <h2>thursday</h2>
+        <div class="unit" style="background-color: #FFC107;" data-time="9:00-10:00">science</div>
+        <div class="unit" style="background-color: #8bc34a;" data-time="9:00-10:00">PE</div>
+        <div class="unit" style="background-color: #2196f3;" data-time="9:00-10:00">math</div>
+        <div class="unit" style="background-color: #ff9800;" data-time="9:00-10:00">spanish</div>
+        <div class="unit" style="background-color: #E91E63;" data-time="9:00-10:00">social studies</div>
+        <div class="unit" style="background-color: #9c27b0;" data-time="9:00-10:00">english</div>
+      </div>
+      <div class="day">
+        <h2>friday</h2>
+        <div class="unit" style="background-color: #FFC107;" data-time="9:00-10:00">science</div>
+        <div class="unit" style="background-color: #8bc34a;" data-time="9:00-10:00">PE</div>
+        <div class="unit" style="background-color: #673ab7;" data-time="9:00-10:00">public speaking</div>
+        <div class="unit" style="background-color: #2196f3;" data-time="9:00-10:00">math</div>
+        <div class="unit" style="background-color: #ff9800;" data-time="9:00-10:00">spanish</div>
+        <div class="unit" style="background-color: #E91E63;" data-time="9:00-10:00">social studies</div>
+      </div>
+    </div>
+    <div id="settingswindow" class='window'>
+      <div class="windowContent">
+        <div class="heading"><button class="normalbtn" id='closesettings'></button>Customisation</div>
+        <div id="week">
+          <label><input type="checkbox">sunday</label>
+          <label><input type="checkbox" checked>monday</label>
+          <label><input type="checkbox" checked>tuesday</label>
+          <label><input type="checkbox" checked>wednesday</label>
+          <label><input type="checkbox" checked>thursday</label>
+          <label><input type="checkbox" checked>friday</label>
+          <label><input type="checkbox">saturday</label>
+        </div>
+        <div id="scheduleEditor"></div>
+        <ul id='periods'>
+          <li id='addperiod'><button class="normalbtn"></button></li>
+        </ul>
+      </div>
+    </div>
+    <span id='textwidthmeasure'></span>
+
+    <script src="js/dom.js" charset="utf-8"></script>
+    <script src="js/simplecolour.js" charset="utf-8"></script>
+    <script src="js/scheduleEditor.js" charset="utf-8"></script>
+    <script>
+Dom.byID('progress').style.width='70%';
+Dom.byID('currentprogress').style.width='70%';
+Dom.bySel('.next').dataset.time='60 seconds';
+Dom.byID('settings').onclick=e=>{
+  Dom.byID('settingswindow').classList.add('open');
+  document.body.classList.add('openwindow');
+};
+Dom.byID('settings').click();
+Dom.byID('closesettings').onclick=e=>{
+  Dom.byID('settingswindow').classList.remove('open');
+  document.body.classList.remove('openwindow');
+};
+function width(html) {
+  Dom.byID('textwidthmeasure').innerHTML=html;
+  return Dom.byID('textwidthmeasure').clientWidth+1;
+}
+var defaultColours='BFBD6D d96262 8abdb7 61ba6e be6fbf d69c4b 6d6dcf 777f85 2d303b dedede 918484'.split(' ');
+Dom.byID('addperiod').onclick=e=>{
+  var li=document.createElement("li"),
+  del=document.createElement("button"),
+  colour=document.createElement("input"),
+  title=document.createElement("input"),
+  defaults=document.createElement("ul"),
+  picker;
+  del.classList.add('normalbtn');
+  del.onclick=e=>{
+    Dom.byID('periods').removeChild(li);
+  };
+  title.type='text';
+  title.placeholder='Period name';
+  title.style.width=width(title.placeholder)+'px';
+  title.oninput=e=>{
+    title.style.width=width(title.value?title.value:title.placeholder)+'px';
+  };
+  defaults.classList.add('defaultColours')
+  defaults.onclick=e=>{
+    if (e.target.tagName==='LI') colour.setColour(e.target.style.backgroundColor);
+  };
+  for (var i=0;i<defaultColours.length;i++) {
+    var t=document.createElement("li");
+    t.style.backgroundColor='#'+defaultColours[i];
+    defaults.appendChild(t);
+  }
+  li.appendChild(del);
+  li.appendChild(colour);
+  li.appendChild(title);
+  Dom.byID('periods').insertBefore(li,Dom.byID('addperiod'));
+  picker=new ColourPicker(colour);
+  picker.setColour(defaultColours[Math.floor(Math.random()*defaultColours.length)]);
+  picker.wrapper.appendChild(defaults);
+};
+Dom.byID('yesterday').onclick=e=>{
+  var t=document.querySelector('.day.showing');
+  t.classList.remove('showing');
+  if (t.previousElementSibling.classList.contains('day')) t.previousElementSibling.classList.add('showing');
+  else t.parentNode.lastElementChild.classList.add('showing');
+};
+Dom.byID('tomorrow').onclick=e=>{
+  var t=document.querySelector('.day.showing');
+  t.classList.remove('showing');
+  if (t.nextElementSibling) t.nextElementSibling.classList.add('showing');
+  else t.parentNode.querySelector('.day').classList.add('showing');
+};
+(function() {
+  var t=document.createElement("span"); // for some reason this helps get the body to fit on mobile?
+  t.innerHTML='bob';
+  document.body.appendChild(t);
+  setTimeout(_=>document.body.removeChild(t),0);
+}());
+    </script>
+  </body>
+  <!-- MADE BY SEAN -->
+</html>

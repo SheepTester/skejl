@@ -1,0 +1,227 @@
+#schedule {
+  margin: 5vh 5vw;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.day {
+  flex: 1 1 0;
+  opacity: 0.7;
+}
+.day.today {
+  opacity: 1;
+  flex-grow: 1.2;
+}
+.day h2 {
+  font-size: 25px;
+  width: 100%;
+  text-align: center;
+  color: rgba(255,255,255,0.7);
+  font-weight: normal;
+}
+.day .unit {
+  font-size: 20px;
+  text-align: center;
+  padding: 5vh 0;
+  margin: 2vh 2vw;
+}
+.day .unit::after {
+  content: attr(data-time);
+  color: rgba(255,255,255,0.5);
+  display: block;
+  font-size: 10px;
+}
+#schedule .normalbtn {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 10px;
+  font-size: 40px;
+  transition: background-position .2s;
+}
+#yesterday {
+  left: 0;
+  background-image: url('../img/material_keyboard_arrow_left.svg');
+}
+#yesterday:hover,#yesterday:focus {
+  background-position: -5px;
+}
+#tomorrow {
+  right: 0;
+  background-image: url('../img/material_keyboard_arrow_right.svg');
+}
+#tomorrow:hover,#tomorrow:focus {
+  background-position: 5px;
+}
+@media (max-width: 1000px) {
+  .day {
+    opacity: 1;
+  }
+  .day:not(.showing) {
+    display: none;
+  }
+  #schedule .normalbtn {
+    display: inline-block;
+  }
+}
+
+/* EDITOR */
+#scheduleEditor {
+  background-color: rgba(0,0,0,0.2);
+}
+#periods {
+  margin: 10px -10px;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+#periods > li {
+  background-color: rgba(0,0,0,0.15);
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  vertical-align: top;
+  flex: 1 0 auto;
+}
+#periods li input[type=text] {
+  font-size: 20px;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  width: 160px;
+  cursor: pointer;
+  color: rgba(0,0,0,0.7);
+  height: 20px;
+  vertical-align: top;
+  padding-bottom: 1px;
+  box-sizing: border-box;
+}
+#periods li button {
+  font-size: 20px;
+  vertical-align: top;
+  background-image: url('../img/material_close.svg');
+  opacity: 0.5;
+  margin-right: 5px;
+}
+#periods li input[type=text]:hover {
+  color: black;
+}
+#periods li input[type=text]:focus {
+  color: black;
+  cursor: auto;
+  border-bottom: 1px solid rgba(0,0,0,0.7);
+  padding-bottom: 0;
+}
+#periods li input[type=text]::-webkit-input-placeholder {color: rgba(0,0,0,0.4);}
+#periods li input[type=text]::-moz-placeholder {color: rgba(0,0,0,0.4);}
+#periods li input[type=text]:-ms-placeholder {color: rgba(0,0,0,0.4);}
+#periods li input[type=text]:-moz-placeholder {color: rgba(0,0,0,0.4);}
+#periods li input[type=radio] {
+  width: 20px;
+  height: 20px;
+  vertical-align: top;
+  margin: 0;
+  margin-right: 7px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 50%;
+}
+#periods li input[type=radio]:focus {
+  border-color: rgba(0,0,0,0.4);
+}
+#periods #addperiod {
+  padding: 5px;
+  flex-grow: 0;
+  height: 30px;
+}
+#periods #addperiod button {
+  font-size: 30px;
+  vertical-align: top;
+  background-image: url('../img/material_add.svg');
+  opacity: 0.5;
+  margin-right: 0;
+}
+#periods button:hover,#periods button:focus,#periods #addperiod button:hover,#periods #addperiod button:focus {
+  opacity: 1;
+}
+.simplecolourwrapper {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.3);
+  transition: transform .2s,opacity .2s;
+  background-color: rgba(0,0,0,0.6);
+  padding: 10px;
+  z-index: 3;
+}
+.simplecolourwrapper.active {
+  pointer-events: all;
+  opacity: 1;
+  transform: scale(1);
+}
+.simplecolourhex {
+  font-size: 20px;
+  border: 0;
+  background-color: rgba(0,0,0,0.2);
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  display: block;
+  padding: 0;
+  height: 20px;
+  margin-bottom: 10px;
+  width: 210px;
+}
+.simplecolourhex:focus {
+  cursor: auto;
+  color: white;
+}
+.simplecoloursquare {
+  height: 180px;
+  width: 180px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.simplecoloursquare .simplecoloursquareknob {
+  height: 2px;
+  width: 2px;
+  box-sizing: border-box;
+  margin-left: -1px;
+  margin-top: -1px;
+  background-color: rgba(255,255,255,0.8);
+  box-shadow: 0 0 3px rgba(0,0,0,0.8);
+  border-radius: 50%;
+}
+.simplecolourhue {
+  height: 180px;
+  width: 20px;
+  display: inline-block;
+}
+.simplecolourhue .simplecolourhueknob {
+  height: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: -1px;
+  background-color: rgba(255,255,255,0.8);
+  box-shadow: 0 0 3px rgba(0,0,0,0.8);
+}
+.defaultColours {
+  padding: 0;
+  margin: 0;
+  width: 210px;
+}
+.defaultColours li {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.3);
+  box-sizing: border-box;
+}
+.defaultColours li:active {
+  border-color: rgba(0,0,0,0.4);
+}
